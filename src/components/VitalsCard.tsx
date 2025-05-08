@@ -5,12 +5,14 @@ import { Progress } from "@/components/ui/progress";
 import { Heart, Activity, Thermometer, Circle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+type VitalStatus = 'normal' | 'warning' | 'critical';
+
 interface VitalsCardProps {
   title: string;
   value: number;
   unit: string;
   icon: 'heart' | 'activity' | 'thermometer' | 'oxygen';
-  status: 'normal' | 'warning' | 'critical';
+  status: VitalStatus;
   min: number;
   max: number;
 }

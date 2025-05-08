@@ -5,12 +5,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Bluetooth } from 'lucide-react';
 import { toast } from 'sonner';
 
+interface Navigator {
+  bluetooth?: {
+    requestDevice(options: { acceptAllDevices: boolean }): Promise<any>;
+  };
+}
+
 const BluetoothStatus = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   
   const connectBluetooth = async () => {
-    if (!navigator.bluetooth) {
+    const nav = navigator as Navigator;
+    if (!nav.bluetooth) {
       toast.error("Bluetooth is not supported in your browser");
       return;
     }
